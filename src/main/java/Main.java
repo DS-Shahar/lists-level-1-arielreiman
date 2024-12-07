@@ -4,7 +4,8 @@ public class main {
     public static void main(String[] args) {
 
         Node<Integer> head = ex1(new int[]{1, 2, 3, 4, 5});
-        
+	Node<Integer> head2 = ex1(new int[]{1, 2, 3, 4, 5});
+
         System.out.println("ex2");
         ex2_1(head);
         
@@ -23,8 +24,15 @@ public class main {
         System.out.println("Exists: " + exists);
         
         System.out.println("ex6");
-
         System.out.println(ex6(head, 2));
+
+	System.out.println("ex8");
+        System.out.println(ex8(head, head2));
+	
+	System.out.println("ex9");
+	ex9(head,head2)
+	
+		
 
     }
 
@@ -117,6 +125,28 @@ public class main {
             current = current.getNext(); 
         }
 		return head;
+    }
+
+    public static boolean ex8(Node<Integer> l1, Node<Integer> l2) {
+    	if (!l1.hasNext() && !l2.hasNext()) {
+    		return true;
+    	}
+    	
+    	if (l1.getValue() != l2.getValue()) {
+    		return false;
+    	}
+		
+    	return ex8(l1.getNext(), l2.getNext());
+    }
+
+    public static void ex9(Node<Integer> l1, Node<Integer> l2) {
+    	if (!l1.hasNext() && !l2.hasNext()) {
+    		return;
+    	}
+    	if (l1.getValue() == l2.getValue()) {
+    		System.out.println(l1.getValue());
+    	}
+    	ex9(l1.getNext(), l2.getNext());
     }
    
 }
