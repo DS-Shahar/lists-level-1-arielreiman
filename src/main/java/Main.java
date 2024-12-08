@@ -140,13 +140,17 @@ public class main {
     }
 
     public static void ex9(Node<Integer> l1, Node<Integer> l2) {
-    	if (!l1.hasNext() && !l2.hasNext()) {
-    		return;
+    	Node<Integer> h = l1;
+    	while (h!=null) {
+    		Node<Integer> p = l2;
+    		while (p!=null) {
+    			if (p.getValue().equals(h.getValue())) {
+    				System.out.println(p.getValue());
+    			}
+    			p=p.getNext();
+    		}
+    		h=h.getNext();
     	}
-    	if (l1.getValue() == l2.getValue()) {
-    		System.out.println(l1.getValue());
-    	}
-    	ex9(l1.getNext(), l2.getNext());
     }
    
 }
