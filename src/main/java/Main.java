@@ -31,6 +31,10 @@ public class main {
 	
 	System.out.println("ex9");
 	ex9(head,head2)
+	System.out.println("ex10");
+	ex10(head,head2)
+	System.out.println("ex11");
+	ex11(head,head2)
 	
 		
 
@@ -151,6 +155,50 @@ public class main {
     		}
     		h=h.getNext();
     	}
+    }
+    public static Node<Integer> ex10(Node<Integer> list1, Node<Integer> list2) {
+        Node<Integer> common = null; 
+        while (list1 != null) { 
+            Node<Integer> temp = list2;
+            while (temp != null) {
+                if (list1.getValue().equals(temp.getValue())) { 
+                	Node<Integer> newNode = new Node<Integer>(list1.getValue());
+                	newNode.setNext(common);
+                	common = newNode;
+                    break;
+                }
+                temp = temp.getNext();
+            }
+            list1 = list1.getNext(); 
+        }
+
+        return common;
+    }
+    
+    public static Node<Integer> ex11(Node<Integer> list1, Node<Integer> list2) {
+        Node<Integer> dummy = new Node<>(null, list1); 
+        Node<Integer> prev = dummy; 
+        Node<Integer> curr = list1;
+
+        while (curr != null) {
+            if (existsIn(curr.getValue(), list2)) { 
+                prev.setNext(curr.getNext()); 
+            } else {
+                prev = curr; 
+            }
+            curr = curr.getNext();
+        }
+
+        return dummy.getNext(); 
+    }
+
+    private static boolean existsIn(Integer value, Node<Integer> list) {
+        while (list != null) {
+            if (value.equals(list.getValue())) {
+                return true;
+            }
+            list = list.getNext(); 
+        return false; 
     }
    
 }
